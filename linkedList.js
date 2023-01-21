@@ -8,20 +8,19 @@ const LinkedList = () => {
     // if list is empty add element and make it head
     if (head === null) {
       head = newNode;
-      console.log(head);
     } else {
       current = head;
       while (current.next !== null) {
         current = current.next;
       }
       current.next = newNode;
-      console.log(current.next);
     }
     size += 1;
   };
 
   const prepend = (value) => {
     head = Node(value, head);
+    size += 1;
     console.log(head);
   };
 
@@ -29,18 +28,22 @@ const LinkedList = () => {
     return head;
   };
 
-  return { getHead, prepend, append };
+  const getSize = () => {
+    return size;
+  };
+
+  return { prepend, append, getHead, getSize };
 };
 
-const Node = (value = null, next = null) => {
+const Node = (value, next = null) => {
   return { value, next };
 };
 
 const list = LinkedList();
 list.append(5);
 list.append(6);
-// list.prepend(3);
-// list.prepend(1);
-list.append(7);
+list.prepend(3);
+list.prepend(1);
+// list.append(7);
 
-// console.log(list.getHead());
+console.log(list.getSize());
