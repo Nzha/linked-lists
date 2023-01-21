@@ -24,15 +24,27 @@ const LinkedList = () => {
     console.log(head);
   };
 
-  const getHead = () => {
-    return head;
-  };
-
   const getSize = () => {
     return size;
   };
 
-  return { prepend, append, getHead, getSize };
+  const getHead = () => {
+    return head;
+  };
+
+  const tail = () => {
+    if (head === null) {
+      return 'Empty list';
+    } else {
+      current = head;
+      while (current.next !== null){
+        current = current.next;
+      }
+      return current;
+    }
+  }
+
+  return { prepend, append, getSize, getHead, tail };
 };
 
 const Node = (value, next = null) => {
@@ -44,6 +56,6 @@ list.append(5);
 list.append(6);
 list.prepend(3);
 list.prepend(1);
-// list.append(7);
+list.append(7);
 
-console.log(list.getSize());
+console.log(list.tail());
