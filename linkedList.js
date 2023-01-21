@@ -1,11 +1,9 @@
 const LinkedList = () => {
   let head = null;
-  let size = 0;
 
   const append = (value) => {
     const newNode = Node(value);
 
-    // if list is empty add element and make it head
     if (head === null) {
       head = newNode;
     } else {
@@ -15,18 +13,25 @@ const LinkedList = () => {
       }
       current.next = newNode;
     }
-    size += 1;
   };
 
   const prepend = (value) => {
     head = Node(value, head);
-    size += 1;
     console.log(head);
   };
 
-  const getSize = () => {
-    return size;
-  };
+
+  const size = () => {
+    if (head !== null) {
+      let count = 0;
+      current = head;
+      while (current.next !== null) {
+        current = current.next;
+        count += 1;
+      }
+      return count;
+    }
+  }
 
   const getHead = () => {
     return head;
@@ -37,14 +42,28 @@ const LinkedList = () => {
       return 'Empty list';
     } else {
       current = head;
-      while (current.next !== null){
+      while (current.next !== null) {
         current = current.next;
       }
       return current;
     }
-  }
+  };
 
-  return { prepend, append, getSize, getHead, tail };
+  const at = (index) => {
+    let count = 0;
+    if (head !== null) {
+      current = head;
+      while (current.next !== null) {
+        if (index === count) {
+          return current;
+        }
+        current = current.next;
+        count += 1;
+      }
+    }
+  };
+
+  return { prepend, append, size, getHead, tail, at };
 };
 
 const Node = (value, next = null) => {
@@ -58,4 +77,7 @@ list.prepend(3);
 list.prepend(1);
 list.append(7);
 
-console.log(list.tail());
+// 1-> 3-> 5 -> 6 -> 7
+
+// console.log(list.size());
+// console.log(list.at(3));
