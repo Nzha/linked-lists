@@ -90,6 +90,20 @@ const LinkedList = () => {
     return (str += 'null');
   };
 
+  const insertAt = (value, index) => {
+    let current = head;
+    let count = 0;
+    if (index === 0) prepend(value);
+    while (current) {
+      if (count === index - 1) {
+        const newNode = Node(value, current.next);
+        current.next = newNode;
+      }
+      current = current.next;
+      count += 1;
+    }
+  };
+
   return {
     prepend,
     append,
@@ -101,6 +115,7 @@ const LinkedList = () => {
     contains,
     find,
     toString,
+    insertAt,
   };
 };
 
@@ -115,7 +130,7 @@ list.prepend(3);
 list.prepend(1);
 list.append(7);
 list.pop();
-list.toString();
+list.insertAt(99, 3);
 
 // 1-> 3-> 5 -> 6 -> 7
 
