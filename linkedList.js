@@ -104,6 +104,19 @@ const LinkedList = () => {
     }
   };
 
+  const removeAt = (index) => {
+    let current = head;
+    let count = 0;
+    if (index === 0) head = current.next;
+    while (current) {
+      if (count === index - 1) {
+        current.next = current.next.next;
+      }
+      current = current.next;
+      count += 1;
+    }
+  };
+
   return {
     prepend,
     append,
@@ -116,6 +129,7 @@ const LinkedList = () => {
     find,
     toString,
     insertAt,
+    removeAt,
   };
 };
 
@@ -131,8 +145,9 @@ list.prepend(1);
 list.append(7);
 list.pop();
 list.insertAt(99, 3);
+list.removeAt(2);
 
-// 1-> 3-> 5 -> 6 -> 7
+// 1-> 3-> 5 -> 6
 
 // console.log(list.size());
 // console.log(list.tail());
