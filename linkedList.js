@@ -8,7 +8,7 @@ const LinkedList = () => {
       head = newNode;
     } else {
       current = head;
-      while (current.next !== null) {
+      while (current.next) {
         current = current.next;
       }
       current.next = newNode;
@@ -22,7 +22,7 @@ const LinkedList = () => {
   const size = () => {
     let count = 1;
     let current = head;
-    while (current.next !== null) {
+    while (current.next) {
       count += 1;
       current = current.next;
     }
@@ -60,7 +60,16 @@ const LinkedList = () => {
     return current;
   };
 
-  return { prepend, append, size, getHead, tail, at, pop };
+  const contains = (value) => {
+    let current = head;
+    while (current) {
+      if (current.value === value) return true;
+      current = current.next;
+    }
+    return false;
+  };
+
+  return { prepend, append, size, getHead, tail, at, pop, contains };
 };
 
 const Node = (value, next = null) => {
@@ -79,4 +88,5 @@ list.pop();
 
 // console.log(list.size());
 // console.log(list.tail());
-console.log(list.at(3));
+// console.log(list.at(3));
+console.log(list.contains(6));
