@@ -69,7 +69,18 @@ const LinkedList = () => {
     return false;
   };
 
-  return { prepend, append, size, getHead, tail, at, pop, contains };
+  const find = (value) => {
+    let index = 0;
+    let current = head;
+    while (current) {
+      if (current.value === value) return index;
+      current = current.next;
+      index += 1;
+    }
+    return null;
+  };
+
+  return { prepend, append, size, getHead, tail, at, pop, contains, find };
 };
 
 const Node = (value, next = null) => {
@@ -89,4 +100,5 @@ list.pop();
 // console.log(list.size());
 // console.log(list.tail());
 // console.log(list.at(3));
-console.log(list.contains(6));
+// console.log(list.contains(6));
+console.log(list.find(6));
