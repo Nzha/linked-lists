@@ -80,7 +80,28 @@ const LinkedList = () => {
     return null;
   };
 
-  return { prepend, append, size, getHead, tail, at, pop, contains, find };
+  const toString = () => {
+    let current = head;
+    let str = '';
+    while (current) {
+      str += `${current.value} -> `;
+      current = current.next;
+    }
+    return (str += 'null');
+  };
+
+  return {
+    prepend,
+    append,
+    size,
+    getHead,
+    tail,
+    at,
+    pop,
+    contains,
+    find,
+    toString,
+  };
 };
 
 const Node = (value, next = null) => {
@@ -94,6 +115,7 @@ list.prepend(3);
 list.prepend(1);
 list.append(7);
 list.pop();
+list.toString();
 
 // 1-> 3-> 5 -> 6 -> 7
 
@@ -101,4 +123,5 @@ list.pop();
 // console.log(list.tail());
 // console.log(list.at(3));
 // console.log(list.contains(6));
-console.log(list.find(6));
+// console.log(list.find(6));
+console.log(list.toString());
